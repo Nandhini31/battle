@@ -16,19 +16,19 @@ class Battle < Sinatra::Base
     redirect '/play'
   end
 
-  get '/play' do
+  before do
     @game = Game.instance
+  end
+
+  get '/play' do
     redirect '/lose' if @game.attacking_player.hp <= 0
-    @player_1_name = @game.player_1.name
-    @player_2_name = @game.player_2.name
-    @player_1_HP = @game.player_1.hp
-    @player_2_HP = @game.player_2.hp
+    @player_1 = @game.player_1
+    @player_2 = @game.player_2
     @active_player_name = @game.attacking_player.name
     erb :play
   end
 
   post '/attack' do
-    @game = Game.instance
     @attacker = @game.attacking_player
     @attacked = @game.attacked_player
     @game.attack(@attacked)
@@ -37,8 +37,7 @@ class Battle < Sinatra::Base
   end
 
   get '/lose' do
-    @game = Game.instance
-    @player = @game.attacking_player
+    @loser = @game.attacking_player
     erb :lose
   end
 
