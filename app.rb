@@ -17,6 +17,7 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
+    redirect  '/lose' if $game.attacked_player.hp <=0
     @player_1_name = $game.player_1.name
     @player_2_name = $game.player_2.name
     @player_1_HP = $game.player_1.hp
@@ -31,6 +32,11 @@ class Battle < Sinatra::Base
     $game.attack(@attacked)
     $game.switch_players
     erb :attack
+
+  end
+
+  get '/lose' do
+      erb :lose
   end
 
   run! if app_file == $0

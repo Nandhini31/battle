@@ -1,4 +1,5 @@
-feature 'fill in players name' do
+feature 'Game' do
+
   scenario 'Can enter players name and see it on the screen' do
     sign_in_and_play
     expect(page).to have_content 'Antonio vs Nandhini'
@@ -49,4 +50,15 @@ feature 'fill in players name' do
     click_button'attack'
     expect(page).to have_content 'Nandhini attacks Antonio'
   end
+
+  scenario "Player 2 get a Lose message" do
+    sign_in_and_play
+    20.times{
+        click_button'attack'
+        click_button'Ok'
+    }
+    expect(page).to have_content  'Nandhini haha, You Lose!'
+  end
+
+
 end
