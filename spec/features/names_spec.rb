@@ -15,4 +15,10 @@ feature 'fill in players name' do
     expect(page).to have_content 'Antonio attacks Nandhini'
   end
 
+  scenario "Attack reduces player 2's hitpoints" do
+    sign_in_and_play
+    click_button'attack'
+    click_button'Ok'
+    expect(page).to have_content 'Antonio vs Nandhini HP: 90'
+  end
 end
