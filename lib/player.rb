@@ -11,4 +11,5 @@ class Player
   def hurt
     @hp -= 10
   end
+
 end
