@@ -59,6 +59,4 @@ feature 'Game' do
     }
     expect(page).to have_content 'Nandhini haha, You Lose!'
   end
-
-
 end
