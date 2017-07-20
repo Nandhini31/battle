@@ -41,4 +41,12 @@ feature 'fill in players name' do
     click_button'Ok'
     expect(page).to have_content "Antonio's turn:"
   end
+
+  scenario "Player 2 attacks player 1 and gets confirmation" do
+    sign_in_and_play
+    click_button'attack'
+    click_button'Ok'
+    click_button'attack'
+    expect(page).to have_content 'Nandhini attacks Antonio'
+  end
 end

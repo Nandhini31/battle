@@ -11,8 +11,12 @@ class Game
     player.hurt
   end
 
-  def active_player_name
-    @players.first.name
+  def attacking_player
+    @players.first
+  end
+
+  def attacked_player
+    @players.last
   end
 
   def switch_players
