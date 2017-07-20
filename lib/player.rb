@@ -1,6 +1,4 @@
 class Player
-
-
   attr_accessor :name, :hp
 
   def initialize(name)
@@ -11,5 +9,4 @@ class Player
   def hurt
     @hp -= 10
   end
-
 end

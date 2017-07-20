@@ -2,11 +2,11 @@ require 'game'
 
 describe Game do
 
-  let(:player1) {double :player1}
-  let(:player2) {double :player2}
-  subject(:game) {described_class.new(player1, player2)}
+  let(:player1) { double :player1, name: 'P1' }
+  let(:player2) { double :player2, name: 'P2' }
+  subject(:game) { described_class.new(player1, player2) }
 
-  let(:player){double :player, hurt: nil}
+  let(:player) { double :player, hurt: nil }
 
     describe '#attack' do
       it 'expects to call the hurt method' do
