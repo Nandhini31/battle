@@ -12,31 +12,34 @@ class Battle < Sinatra::Base
   post '/names' do
     player_1 = Player.new(params[:player_1_name])
     player_2 = Player.new(params[:player_2_name])
-    $game = Game.new(player_1,player_2)
+    Game.create(player_1, player_2)
     redirect '/play'
   end
 
   get '/play' do
-    redirect  '/lose' if $game.attacked_player.hp <=0
-    @player_1_name = $game.player_1.name
-    @player_2_name = $game.player_2.name
-    @player_1_HP = $game.player_1.hp
-    @player_2_HP = $game.player_2.hp
-    @active_player_name = $game.attacking_player.name
+    @game = Game.instance
+    redirect '/lose' if @game.attacking_player.hp <= 0
+    @player_1_name = @game.player_1.name
+    @player_2_name = @game.player_2.name
+    @player_1_HP = @game.player_1.hp
+    @player_2_HP = @game.player_2.hp
+    @active_player_name = @game.attacking_player.name
     erb :play
   end
 
   post '/attack' do
-    @attacker = $game.attacking_player
-    @attacked = $game.attacked_player
-    $game.attack(@attacked)
-    $game.switch_players
+    @game = Game.instance
+    @attacker = @game.attacking_player
+    @attacked = @game.attacked_player
+    @game.attack(@attacked)
+    @game.switch_players
     erb :attack
-
   end
 
   get '/lose' do
-      erb :lose
+    @game = Game.instance
+    @player = @game.attacking_player
+    erb :lose
   end
 
   run! if app_file == $0

@@ -53,11 +53,11 @@ feature 'Game' do
 
   scenario "Player 2 get a Lose message" do
     sign_in_and_play
-    20.times{
+    19.times{
         click_button'attack'
         click_button'Ok'
     }
-    expect(page).to have_content  'Nandhini haha, You Lose!'
+    expect(page).to have_content 'Nandhini haha, You Lose!'
   end
 
 
