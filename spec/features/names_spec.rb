@@ -9,9 +9,14 @@ feature 'fill in players name' do
     expect(page).to have_content "Antonio's turn:"
   end
 
+  scenario "Displays Player 1's hit points" do
+    sign_in_and_play
+    expect(page).to have_content 'Antonio 100/100'
+  end
+
   scenario "Displays Player 2's hit points" do
     sign_in_and_play
-    expect(page).to have_content 'Antonio vs Nandhini HP: 100'
+    expect(page).to have_content 'Nandhini 100/100'
   end
 
   scenario "Attack Player 2 and get confirmation" do
@@ -24,7 +29,7 @@ feature 'fill in players name' do
     sign_in_and_play
     click_button'attack'
     click_button'Ok'
-    expect(page).to have_content 'Antonio vs Nandhini HP: 90'
+    expect(page).to have_content ' Nandhini 90/100'
   end
 
   scenario "Attack switches the turns" do
