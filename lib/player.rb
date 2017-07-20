@@ -9,6 +9,6 @@ class Player
   end
 
   def hurt
-    hp -= 10
+    @hp -= 10
   end
 end
